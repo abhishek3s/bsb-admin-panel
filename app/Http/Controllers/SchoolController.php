@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use Illuminate\Http\Request;
 use App\Models\SchoolAffiliation;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Webklex\PDFMerger\Facades\PDFMergerFacade as PDFMerger;
-use PDF;
 
 class SchoolController extends Controller
 {
@@ -124,8 +125,9 @@ class SchoolController extends Controller
 
         } catch (\Throwable $th) {
             Storage::disk('public')->delete($tempFileName);
-            return redirect()->back()->with('error', $th->getMessage());
-            //throw $th;
+            Log::error("--PDF Generate Error--".$th->getMessage());
+            return redirect()->back()->with('error', "Something went wrong");
+            
         }
     }
 }

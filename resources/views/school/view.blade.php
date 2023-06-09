@@ -2273,9 +2273,9 @@
 @stop
 
 @section('css')
-
+    <link rel="stylesheet" href="{{ asset('asset/css/custom.css') }}">
 @stop
 
 @section('js')
-
+    <script src="{{ asset('asset/js/custom.js') }}"></script>
 @stop
